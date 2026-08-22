@@ -19,7 +19,8 @@ export const siteConfig = {
   // on the homepage (scrolled to) or a route path (navigated to).
   nav: [
     { label: "Home", to: "/#home" },
-    { label: "Master Visuals", to: "/#master-visuals" },
+    { label: "Our Services", to: "/#services" },
+    { label: "Visuals", to: "/#master-visuals" },
     { label: "What We Do", to: "/#what-we-do" },
     { label: "Our Clients", to: "/#our-clients" },
     { label: "Contact", to: "/#contact" },
@@ -28,11 +29,11 @@ export const siteConfig = {
   // Social links — swap the `href` values for your real profiles.
   // Set `href` to "" to hide an icon from the site.
   socials: [
-    { name: "Facebook", href: "https://facebook.com" },
-    { name: "Instagram", href: "https://instagram.com" },
+    { name: "Facebook", href: "https://www.facebook.com/Reflect.Studio0" },
+    { name: "Instagram", href: "https://www.instagram.com/omar_alqenawy/" },
     { name: "Snapchat", href: "https://snapchat.com" },
     { name: "TikTok", href: "https://tiktok.com" },
-    { name: "WhatsApp", href: "https://wa.me/000000000" },
-    { name: "Email", href: "mailto:hello@reflectstudio.com" },
+    { name: "WhatsApp", href: "https://wa.me/+201113419906" },
+    { name: "Email", href: "mailto:omaralqenawy12@gmail.com" },
   ],
 };

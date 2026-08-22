@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { siteConfig } from "../data/siteConfig";
+import logoImage from "../assets/logo.png";
 
 export default function Header() {
   const location = useLocation();
@@ -8,28 +9,65 @@ export default function Header() {
   const isHome = location.pathname === "/";
   const [active, setActive] = useState("home");
 
+  // ============================================================
+  // LOGO SIZE
+  // غيّر الرقم ده فقط للتحكم في عرض الشعار
+  // ============================================================
+  const LOGO_WIDTH = 200;
+
   // Track which homepage section is in view so its nav pill fills in.
   useEffect(() => {
     if (!isHome) return;
-    const ids = siteConfig.nav.map((n) => n.to.replace("/#", ""));
-    const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
+
+    const ids = siteConfig.nav.map((n) =>
+      n.to.replace("/#", "")
+    );
+
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
 
     function onScroll() {
       let current = sections[0];
+
       sections.forEach((sec) => {
-        if (sec.getBoundingClientRect().top <= window.innerHeight * 0.4) current = sec;
+        if (
+          sec.getBoundingClientRect().top <=
+          window.innerHeight * 0.4
+        ) {
+          current = sec;
+        }
       });
-      if (current) setActive(current.id);
+
+      if (current) {
+        setActive(current.id);
+      }
     }
-    window.addEventListener("scroll", onScroll, { passive: true });
+
+    window.addEventListener(
+      "scroll",
+      onScroll,
+      { passive: true }
+    );
+
     onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+
+    return () =>
+      window.removeEventListener(
+        "scroll",
+        onScroll
+      );
   }, [isHome]);
 
   function goTo(to) {
     const sectionId = to.replace("/#", "");
+
     if (isHome) {
-      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+      document
+        .getElementById(sectionId)
+        ?.scrollIntoView({
+          behavior: "smooth",
+        });
     } else {
       navigate(to);
     }
@@ -38,28 +76,64 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="wrap nav-inner">
+
+        {/* ==================================================
+            REAL LOGO
+            الضغط على اللوجو يرجع للـ Home
+            ================================================== */}
+
         <a
           href="/"
           className="logo"
           onClick={(e) => {
             e.preventDefault();
-            navigate("/");
+
+            if (isHome) {
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+            } else {
+              navigate("/");
+            }
           }}
+          aria-label="Reflect Studio — Home"
         >
-          <span className="dot" />
-          {siteConfig.shortName.toUpperCase()}
-          <span className="faint">/STUDIO</span>
+          <img
+            src={logoImage}
+            alt="Reflect Studio"
+            className="logo-image"
+            style={{
+              width: `${LOGO_WIDTH}px`,
+              height: "auto",
+              maxHeight: "60px",
+              objectFit: "contain",
+            }}
+          />
         </a>
+
+        {/* ==================================================
+            NAVIGATION
+            ================================================== */}
 
         <nav className="pills">
           {siteConfig.nav.map((item) => {
-            const sectionId = item.to.replace("/#", "");
-            const isActive = isHome && active === sectionId;
+            const sectionId =
+              item.to.replace("/#", "");
+
+            const isActive =
+              isHome &&
+              active === sectionId;
+
             return (
               <a
                 key={item.label}
                 href={item.to}
-                className={isActive ? "active" : "inactive"}
+                className={
+                  isActive
+                    ? "active"
+                    : "inactive"
+                }
                 onClick={(e) => {
                   e.preventDefault();
                   goTo(item.to);
@@ -71,6 +145,10 @@ export default function Header() {
           })}
         </nav>
 
+        {/* ==================================================
+            CTA
+            ================================================== */}
+
         <a
           href="/#contact"
           className="nav-cta"
@@ -81,6 +159,7 @@ export default function Header() {
         >
           Start a project
         </a>
+
       </div>
     </header>
   );

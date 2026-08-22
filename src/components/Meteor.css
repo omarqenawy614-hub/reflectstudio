@@ -1,0 +1,40 @@
+.meteor {
+  position: fixed;
+  width: 140px;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0.8) 65%,
+    #ffffff 100%
+  );
+
+  border-radius: 999px;
+
+  box-shadow:
+    0 0 6px rgba(255, 255, 255, 0.8),
+    0 0 14px rgba(255, 255, 255, 0.5);
+
+  pointer-events: none;
+  z-index: 9999;
+
+  animation: meteorFly 1.2s ease-out forwards;
+}
+
+@keyframes meteorFly {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(30deg);
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(260px, 180px) rotate(30deg);
+  }
+}

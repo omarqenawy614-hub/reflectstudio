@@ -255,10 +255,7 @@ export default function ServicesSection() {
         </div>
 
         <h2 className="section-title">
-          Seven disciplines,
-          <br />
-          one studio.
-        </h2>
+  Our <span className="gradient-text">Services.</span> </h2>
 
       </div>
 

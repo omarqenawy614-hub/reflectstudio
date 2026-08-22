@@ -8,18 +8,29 @@
 // ============================================================
 
 export const clients = [
-  { name: "Nova", logo: null },
-  { name: "Orbit", logo: null },
-  { name: "Vessel", logo: null },
-  { name: "Echo Studio", logo: null },
-  { name: "Atlas", logo: null },
-  { name: "Lumen", logo: null },
-  { name: "Halo", logo: null },
-  { name: "Drift", logo: null },
-  { name: "Prism", logo: null },
-  { name: "Fable", logo: null },
-  { name: "Kin", logo: null },
-  { name: "Arc", logo: null },
+  { name: "Al Amid Ahmed Abd Al Samad", logo: null },
+  { name: "AJAB", logo: null },
+  { name: "Venus Egypt", logo: null },
+  { name: "Alwah", logo: null },
+  { name: "Rifaq Investments KSA", logo: null },
+  { name: "Velora Dental", logo: null },
+  { name: "Engineering Think", logo: null },
+  { name: "Eruption Store", logo: null },
+  { name: "Gharsa KSA", logo: null },
+  { name: "Glory Sports UAE", logo: null },
+  { name: "GreenChain", logo: null },
+  { name: "Heart Pheel", logo: null },
+  { name: "Identity Coffee", logo: null },
+  { name: "Lazira", logo: null },
+  { name: "Raqmi Store", logo: null },
+  { name: "Zayner", logo: null },
+  { name: "Al Yashm", logo: null },
+  { name: "Bayte eg", logo: null },
+  { name: "GetOut", logo: null },
+  { name: "AhDors", logo: null },
+  { name: "Cap Ammar Alshazly", logo: null },
+  { name: "Zaqart", logo: null },
+  { name: "Gharsah Plants", logo: null },
 ];
 
 // ============================================================
@@ -28,8 +39,8 @@ export const clients = [
 // ============================================================
 
 export const stats = [
-  { num: 40, suffix: "+", label: "Clients" },
-  { num: 120, suffix: "+", label: "Projects" },
+  { num: 50, suffix: "+", label: "Clients" },
+  { num: 250, suffix: "+", label: "Projects" },
   { num: 6, suffix: "+", label: "Years of Experience" },
-  { num: 15, suffix: "+", label: "Creative Team" },
+  { num: 15, suffix: "+", label: "Creative Creator" },
 ];

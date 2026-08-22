@@ -1,21 +1,14 @@
 // ============================================================
 // SERVICES / CATEGORIES
-// Each entry becomes: a portrait category card on the homepage, a
-// row in "What We Do" (edited separately in WhatWeDo.jsx), a nav-able
-// category, and its own page at /<slug> listing every project tagged
-// with that category.
-//
-// `image`: path to that category's card background.
-//
-// To add a new service/category: add an object here. To add a
-// project to it, add an entry with a matching `category` slug in
-// src/data/projects.js.
 // ============================================================
 
 import masterVisualsImg from "../assets/categories/master-visuals.jpg";
 import socialMediaImg from "../assets/categories/social-media.jpg";
 import videosImg from "../assets/categories/videos.jpg";
-import visualIdentityImg from "../assets/categories/visual-identity.png";
+import visualIdentityImg from "../assets/categories/visual-identity.jpg";
+import motionGraphicsImg from "../assets/categories/motion-graphics.jpg";
+import websitesImg from "../assets/categories/websites.jpg";
+import campaignsImg from "../assets/categories/campaigns.jpg";
 
 export const services = [
   {
@@ -43,7 +36,7 @@ export const services = [
     slug: "motion-graphics",
     name: "Motion Graphics",
     blurb: "Title sequences, edits, animated systems",
-    image: null,
+    image: motionGraphicsImg,
   },
 
   {
@@ -57,13 +50,13 @@ export const services = [
     slug: "websites",
     name: "Websites",
     blurb: "Interactive, performant digital experiences",
-    image: null,
+    image: websitesImg,
   },
 
   {
     slug: "campaigns",
     name: "Campaigns",
     blurb: "Concept-to-delivery, multi-channel",
-    image: null,
+    image: campaignsImg,
   },
 ];

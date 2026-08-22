@@ -8,6 +8,7 @@ import SpaceField from "./components/SpaceField";
 import Home from "./pages/Home";
 import CategoryPage from "./pages/CategoryPage";
 import ProjectDetail from "./pages/ProjectDetail";
+import Meteor from "./components/Meteor";
 
 // Scrolls to top on every route change, or to a section id when the
 // URL includes a #hash (e.g. navigating to /#contact from another page).
@@ -50,6 +51,7 @@ export default function App() {
     <>
       <div className="grain" />
       <SpaceField />
+      <Meteor />
       <CursorGlow quiet={isProjectDetail} />
       {isFinePointer && <CursorRing />}
       <ScrollManager />
