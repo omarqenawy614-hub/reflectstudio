@@ -30,7 +30,7 @@ export default function Meteor() {
       // وقت عشوائي للشهاب التالي
       timeout = setTimeout(
         createMeteor,
-        4000 + Math.random() * 5000
+        8000 + Math.random() * 7000
       );
     };
 

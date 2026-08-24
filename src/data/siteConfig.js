@@ -12,7 +12,7 @@ export const siteConfig = {
   tagline: "We build the reflection your brand hasn't seen yet.",
   description:
     "Reflect Studio is an independent creative studio working across visual identity, motion, campaigns and digital worlds — for brands that refuse to look like everyone else.",
-  location: "Cairo / Remote",
+  location: "Cairo",
   email: "hello@reflectstudio.com",
 
   // Nav items shown as pills in the header. `to` matches a section id

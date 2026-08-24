@@ -18,10 +18,10 @@ export default function Hero() {
       <div className="wrap hero-content">
         <div className="hero-eyebrow">
           <span className="line" />
-          Creative Studio — {siteConfig.location}
+          Marketing Agency — {siteConfig.location}
         </div>
         <h1>
-          We build the <em>reflection</em> your brand hasn't seen yet.
+          We build the <em>Reflection</em> your brand hasn't seen.
         </h1>
         <p className="hero-sub">{siteConfig.description}</p>
         <div className="hero-actions">

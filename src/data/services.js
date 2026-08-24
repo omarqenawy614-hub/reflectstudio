@@ -2,61 +2,45 @@
 // SERVICES / CATEGORIES
 // ============================================================
 
-import masterVisualsImg from "../assets/categories/master-visuals.jpg";
 import socialMediaImg from "../assets/categories/social-media.jpg";
 import videosImg from "../assets/categories/videos.jpg";
 import visualIdentityImg from "../assets/categories/visual-identity.jpg";
 import motionGraphicsImg from "../assets/categories/motion-graphics.jpg";
 import websitesImg from "../assets/categories/websites.jpg";
-import campaignsImg from "../assets/categories/campaigns.jpg";
 
 export const services = [
   {
-    slug: "master-visuals",
-    name: "Master Visuals",
-    blurb: "Key frames, key art and world-building imagery",
-    image: masterVisualsImg,
-  },
-
-  {
     slug: "social-media",
-    name: "Social Media",
-    blurb: "Content systems built for feed and story",
+    name: "Graphic Design",
+    blurb: "Content systems built for campaigns, social and visual communication",
     image: socialMediaImg,
   },
 
   {
     slug: "visual-identity",
-    name: "Visual Identity",
-    blurb: "Logos, systems, guidelines",
+    name: "Branding & Identity",
+    blurb: "Logos, systems, guidelines and complete brand identities",
     image: visualIdentityImg,
   },
 
   {
     slug: "motion-graphics",
-    name: "Motion Graphics",
-    blurb: "Title sequences, edits, animated systems",
+    name: "Video & Motion",
+    blurb: "Title sequences, edits, animated systems and motion content",
     image: motionGraphicsImg,
   },
 
   {
     slug: "videos",
-    name: "Videos",
+    name: "Video & Motion",
     blurb: "Brand film, product and campaign video",
     image: videosImg,
   },
 
   {
     slug: "websites",
-    name: "Websites",
+    name: "Web Development",
     blurb: "Interactive, performant digital experiences",
     image: websitesImg,
-  },
-
-  {
-    slug: "campaigns",
-    name: "Campaigns",
-    blurb: "Concept-to-delivery, multi-channel",
-    image: campaignsImg,
   },
 ];

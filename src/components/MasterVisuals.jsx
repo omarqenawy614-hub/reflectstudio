@@ -28,6 +28,9 @@ const FEATURED_WORK = [workVisual1, workVisual2, workVisual3];
 // TWO MOVING ROWS
 // ============================================================
 
+// Set to true whenever you want to bring the moving rows back.
+const SHOW_MOVING_ROWS = false;
+
 const ROW_TILES = [
   ["Signal", "Bloom", "Vertex", "Nocturne", "Ionic", "Marrow"],
   ["Orbit", "Frame", "Echo", "Halo", "Wren", "Sable"],
@@ -136,15 +139,19 @@ export default function MasterVisuals() {
 
   // ==========================================================
   // INFINITE MARQUEE
+  // Only runs when SHOW_MOVING_ROWS is true.
   // ==========================================================
 
   useEffect(() => {
+    if (!SHOW_MOVING_ROWS) return;
+
     reducedMotionRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     function measure() {
       rowRefs.forEach((ref, i) => {
         const el = ref.current;
         if (!el) return;
+
         loopWidths.current[i] = el.scrollWidth / 2;
       });
     }
@@ -169,7 +176,6 @@ export default function MasterVisuals() {
       lastScrollYRef.current = scrollY;
 
       const instantBoost = Math.min(scrollDelta * VELOCITY_TO_BOOST, MAX_BOOST);
-
       boostRef.current = Math.max(instantBoost, boostRef.current * BOOST_DECAY);
 
       const speed = BASE_SPEED + boostRef.current;
@@ -245,27 +251,32 @@ export default function MasterVisuals() {
 
       {/* ======================================================
           TWO INFINITE MOVING ROWS
+          
+          Disabled for now.
+          Change SHOW_MOVING_ROWS to true to restore them.
           ====================================================== */}
 
-      <div className="mv-rows-outer">
-        <div className="mv-rows">
-          {ROW_TILES.map((tiles, ri) => (
-            <div className="mv-row" ref={rowRefs[ri]} key={ri}>
-              {tiles.map((name, i) => (
-                <div {...artStyle("mv-tile", null, ri + i)} key={`first-${name}-${i}`}>
-                  <span className="tag">{name}</span>
-                </div>
-              ))}
+      {SHOW_MOVING_ROWS && (
+        <div className="mv-rows-outer">
+          <div className="mv-rows">
+            {ROW_TILES.map((tiles, ri) => (
+              <div className="mv-row" ref={rowRefs[ri]} key={ri}>
+                {tiles.map((name, i) => (
+                  <div {...artStyle("mv-tile", null, ri + i)} key={`first-${name}-${i}`}>
+                    <span className="tag">{name}</span>
+                  </div>
+                ))}
 
-              {tiles.map((name, i) => (
-                <div {...artStyle("mv-tile", null, ri + i)} key={`second-${name}-${i}`}>
-                  <span className="tag">{name}</span>
-                </div>
-              ))}
-            </div>
-          ))}
+                {tiles.map((name, i) => (
+                  <div {...artStyle("mv-tile", null, ri + i)} key={`second-${name}-${i}`}>
+                    <span className="tag">{name}</span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* ======================================================
           BOTTOM FEATURED CARDS
