@@ -145,7 +145,7 @@ nav.pills a.active { background: var(--primary); color: var(--ink); border-color
 
 .hero-fade { position: absolute; left: 0; right: 0; bottom: 0; height: 38%; z-index: 3; background: linear-gradient(180deg, transparent, var(--void) 92%); pointer-events: none; }
 
-.hero-content { position: relative; z-index: 5; padding-bottom: 16vh; }
+.hero-content { position: relative; z-index: 5; padding-bottom: 26vh; }
 
 .hero-eyebrow { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.14em; color: var(--mauve); display: flex; align-items: center; gap: 10px; margin-bottom: 26px; text-transform: uppercase; }
 
@@ -595,4 +595,34 @@ footer { position: relative; z-index: 10; opacity: 2 !important; background: var
 /* تحريك صورة/خلفية الفضائي لليمين */
 .hero-atmosphere.has-image {
   background-position: calc(85% + 0px) center;
+}
+/* ============================================================
+   HERO — SMALL TITLE
+   الجملة الصغيرة أسفل العنوان الرئيسي
+   ============================================================ */
+
+.hero-title-small {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3.2vw, 33px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+/* ============================================================
+   HERO — REFLECTION SIZE
+   تكبير كلمة Reflection فقط
+   ============================================================ */
+
+.hero h1 em {
+  font-size: 1.18em;
+}
+
+@media (max-width: 720px) {
+  .hero-title-small {
+    margin-top: 7px;
+    font-size: clamp(18px, 5vw, 28px);
+  }
 }
