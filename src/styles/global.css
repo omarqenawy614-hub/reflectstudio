@@ -136,7 +136,10 @@ nav.pills a.active { background: var(--primary); color: var(--ink); border-color
     linear-gradient(180deg, #150826 0%, #0a0410 55%, #0a0410 100%);
 }
 
-.hero-atmosphere.has-image { background-size: cover; background-position: center; }
+
+.hero-atmosphere.has-image {background-size: 22%; background-repeat: no-repeat; background-position: center; background-color: var(--void); animation: astronautFloat 9s ease-in-out infinite;}
+@keyframes astronautFloat {0%, 100% {transform: translate3d(0, 0, 0) rotate(0deg) scale(1);} 25% {transform: translate3d(0.35%, -0.6%, 0) rotate(0.15deg) scale(1.003);} 50%
+{transform: translate3d(-0.25%, -1%, 0) rotate(-0.12deg) scale(1.006);} 75% {transform: translate3d(-0.4%, -0.35%, 0) rotate(0.1deg) scale(1.003);}}
 
 .hero-overlay { position: absolute; inset: 0; z-index: 2; background: radial-gradient(circle at 50% 30%, transparent 0%, rgba(10, 4, 16, 0.55) 75%); pointer-events: none; }
 
@@ -588,3 +591,8 @@ footer { position: relative; z-index: 10; opacity: 2 !important; background: var
 }
 
 @media (max-width: 720px) { .hero-content { padding-bottom: 30vh; } }
+
+/* تحريك صورة/خلفية الفضائي لليمين */
+.hero-atmosphere.has-image {
+  background-position: calc(85% + 0px) center;
+}
