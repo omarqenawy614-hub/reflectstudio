@@ -19,7 +19,7 @@ export const siteConfig = {
   // on the homepage (scrolled to) or a route path (navigated to).
   nav: [
     { label: "Home", to: "/#home" },
-    { label: "Our Services", to: "/#services" },
+    { label: "Our Services", to: "/#expertise" },
     { label: "Visuals", to: "/#master-visuals" },
     { label: "What We Do", to: "/#what-we-do" },
     { label: "Our Clients", to: "/#our-clients" },
