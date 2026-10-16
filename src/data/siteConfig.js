@@ -13,13 +13,17 @@ export const siteConfig = {
   description:
     "Reflect Studio is an independent creative studio working across visual identity, motion, campaigns and digital worlds — for brands that refuse to look like everyone else.",
   location: "Cairo",
-  email: "hello@reflectstudio.com",
+  email: "omaralqenawy12@gmail.com",
+  // WhatsApp number: country code + number, digits only (no "+", spaces or dashes).
+  // Used by the contact form and the floating "Chat with us" button.
+  whatsappNumber: "201113419906",
+  whatsappDisplay: "+20 111 341 9906",
 
   // Nav items shown as pills in the header. `to` matches a section id
   // on the homepage (scrolled to) or a route path (navigated to).
   nav: [
     { label: "Home", to: "/#home" },
-    { label: "Our Services", to: "/#expertise" },
+    { label: "Our Services", to: "/#services" },
     { label: "Visuals", to: "/#master-visuals" },
     { label: "What We Do", to: "/#what-we-do" },
     { label: "Our Clients", to: "/#our-clients" },
@@ -33,7 +37,7 @@ export const siteConfig = {
     { name: "Instagram", href: "https://www.instagram.com/omar_alqenawy/" },
     { name: "Snapchat", href: "https://snapchat.com" },
     { name: "TikTok", href: "https://tiktok.com" },
-    { name: "WhatsApp", href: "https://wa.me/+201113419906" },
+    { name: "WhatsApp", href: "https://wa.me/201113419906" },
     { name: "Email", href: "mailto:omaralqenawy12@gmail.com" },
   ],
 };

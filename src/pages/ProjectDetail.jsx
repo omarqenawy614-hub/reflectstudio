@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { getProjectBySlug, getProjectsByCategory } from "../data/projects";
 import { services } from "../data/services";
 import { artStyle } from "../utils/placeholderArt";
+import NotFound from "./NotFound";
 
 // Route: /project/:slug — a flat, global project URL. The project's
 // own `category` field (in src/data/projects.js) is what links it
@@ -10,17 +11,7 @@ export default function ProjectDetail() {
   const { slug } = useParams();
   const project = getProjectBySlug(slug);
 
-  if (!project) {
-    return (
-      <div className="wrap page-header">
-        <Link to="/" className="back-link">
-          ← Back home
-        </Link>
-        <h2 className="section-title">Project not found</h2>
-        <p className="section-sub">That project doesn't exist yet — check the link or head back home.</p>
-      </div>
-    );
-  }
+  if (!project) return <NotFound what="project" />;
 
   const categoryInfo = services.find((s) => s.slug === project.category);
   const siblings = getProjectsByCategory(project.category).filter((p) => p.slug !== project.slug);

@@ -1,8 +1,7 @@
 import Hero from "../components/Hero";
-import ExpertiseSection from "../components/ExpertiseSection";
 import ServicesSection from "../components/ServicesSection";
 import MasterVisuals from "../components/MasterVisuals";
-import WhatWeDo from "../components/WhatWeDo";
+import Process from "../components/Process";
 import OurClients from "../components/OurClients";
 import Stats from "../components/Stats";
 import Contact from "../components/Contact";
@@ -13,10 +12,9 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <ExpertiseSection />
       <ServicesSection />
       <MasterVisuals />
-      <WhatWeDo />
+      <Process />
       <OurClients />
       <Stats />
       <Contact />

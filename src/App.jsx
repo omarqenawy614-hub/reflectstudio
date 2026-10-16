@@ -8,8 +8,10 @@ import SpaceField from "./components/SpaceField";
 import Home from "./pages/Home";
 import CategoryPage from "./pages/CategoryPage";
 import ProjectDetail from "./pages/ProjectDetail";
+import NotFound from "./pages/NotFound";
 import Meteor from "./components/Meteor";
 import SoundToggle from "./components/SoundToggle";
+import WhatsAppFloat from "./components/WhatsAppFloat";
 
 // Scrolls to top on every route change, or to a section id when the
 // URL includes a #hash (e.g. navigating to /#contact from another page).
@@ -79,10 +81,13 @@ export default function App() {
 
       <SoundToggle />
 
+      <WhatsAppFloat />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/project/:slug" element={<ProjectDetail />} />
         <Route path="/:category" element={<CategoryPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Footer />
