@@ -22,6 +22,8 @@
   --font-body: "Manrope", sans-serif;
   --font-mono: "Space Mono", monospace;
   --container: 1240px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --soft: cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -290,21 +292,22 @@ h2.section-title { font-family: var(--font-display); font-weight: 500; font-size
 
 .mv-tile .tag { position: absolute; bottom: 16px; left: 16px; font-family: var(--font-mono); font-size: 10.5px; color: rgba(255, 255, 255, 0.8); }
 
-.mv-featured { margin-top: 90px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+/* The 6 cards sit exactly under the big frame: same width, same start and end. */
+.mv-featured { margin: 60px auto 0; width: 94vw; max-width: 1200px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
 
-.mv-big { aspect-ratio: 3/4; border-radius: 28px; overflow: hidden; position: relative; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); background-size: cover; background-position: center; }
+.mv-big { aspect-ratio: 3/4; border-radius: 20px; overflow: hidden; position: relative; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); background-size: cover; background-position: center; }
 
 .mv-big:hover { transform: translateY(-8px); }
 
-.mv-big .label { position: absolute; bottom: 22px; left: 22px; right: 22px; z-index: 2; }
+.mv-big .label { position: absolute; bottom: 16px; left: 14px; right: 14px; z-index: 2; }
 
-.mv-big .label .n { font-family: var(--font-mono); font-size: 11px; color: rgba(255, 255, 255, 0.7); }
+.mv-big .label .n { font-family: var(--font-mono); font-size: 10px; color: rgba(255, 255, 255, 0.7); }
 
-.mv-big .label .t { font-family: var(--font-display); font-size: 18px; color: #fff; margin-top: 4px; }
+.mv-big .label .t { font-family: var(--font-display); font-size: 12.5px; line-height: 1.25; color: #fff; margin-top: 4px; }
 
 .mv-big .shade { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.55) 100%); z-index: 1; }
 
-@media (max-width: 800px) { .mv-featured { grid-template-columns: repeat(3, 1fr); gap: 8px; } .mv-big { border-radius: 14px; } .mv-big .label { bottom: 10px; left: 10px; right: 10px; } .mv-big .label .n { font-size: 8px; } .mv-big .label .t { font-size: 9px; line-height: 1.15; } }
+@media (max-width: 900px) { .mv-featured { grid-template-columns: repeat(3, 1fr); gap: 10px; } .mv-big { border-radius: 14px; } .mv-big .label { bottom: 10px; left: 10px; right: 10px; } .mv-big .label .n { font-size: 8px; } .mv-big .label .t { font-size: 10px; line-height: 1.15; } }
 
 /* ============================================================
    WHAT WE DO
@@ -314,9 +317,25 @@ h2.section-title { font-family: var(--font-display); font-weight: 500; font-size
 .process-intro { position: sticky; top: 120px; }
 
 .process-list { border-top: 1px solid var(--border); counter-reset: step; }
-.process-item { display: grid; grid-template-columns: 62px 1fr; gap: 18px; padding: 34px 0; border-bottom: 1px solid var(--border-soft); transition: padding-left 0.4s var(--ease); }
-.process-item:hover { padding-left: 10px; }
-.p-n { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(197, 124, 255, 0.5); color: var(--primary); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 12.5px; }
+.process-item { position: relative; display: grid; grid-template-columns: 62px 1fr; gap: 18px; padding: 34px 0; border-bottom: 1px solid var(--border-soft); transition: opacity 0.8s var(--soft); }
+.process-item > * { transition: transform 0.8s var(--soft); }
+
+/* thin light line that sweeps across the row on hover */
+.process-item::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: linear-gradient(90deg, var(--primary), rgba(197, 124, 255, 0)); transform: scaleX(0); transform-origin: left; transition: transform 1s var(--soft); pointer-events: none; }
+
+.p-n { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(197, 124, 255, 0.5); color: var(--primary); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 12.5px; transition: transform 0.8s var(--soft), background-color 0.7s ease, border-color 0.7s ease, box-shadow 0.8s ease; }
+.process-item h3, .process-item p { transition: color 0.7s ease; }
+
+@media (hover: hover) {
+  /* the hovered step stays bright, the others calmly step back */
+  .process-list:hover .process-item { opacity: 0.4; }
+  .process-list:hover .process-item:hover { opacity: 1; }
+  .process-item:hover::after { transform: scaleX(1); }
+  .process-item:hover > * { transform: translateX(10px); }
+  .process-item:hover .p-n { transform: translateX(10px) scale(1.08); background-color: rgba(197, 124, 255, 0.16); border-color: var(--primary); box-shadow: 0 0 28px -4px rgba(197, 124, 255, 0.55); }
+  .process-item:hover h3 { color: var(--primary); }
+  .process-item:hover p { color: var(--text); }
+}
 .process-item h3 { font-family: var(--font-display); font-weight: 500; font-size: clamp(20px, 2.1vw, 26px); }
 .process-item p { margin-top: 10px; color: var(--text-dim); font-size: 15px; line-height: 1.7; max-width: 440px; }
 
@@ -384,7 +403,7 @@ h2.section-title { font-family: var(--font-display); font-weight: 500; font-size
 .social-pill:hover { background: var(--primary); border-color: var(--primary); color: var(--ink); transform: translateY(-4px); }
 .social-pill svg { width: 20px; height: 20px; }
 
-.contact-form { padding: 38px; border-radius: 30px; border: 1px solid var(--border); background: linear-gradient(160deg, rgba(43, 11, 78, 0.5), rgba(19, 8, 36, 0.75)); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 40px 90px -40px rgba(143, 87, 189, 0.45); display: flex; flex-direction: column; gap: 20px; }
+.contact-form { position: relative; z-index: 3; padding: 38px; border-radius: 30px; border: 1px solid var(--border); background: linear-gradient(160deg, #1c0a30, #110720); box-shadow: 0 40px 90px -40px rgba(143, 87, 189, 0.45); display: flex; flex-direction: column; gap: 20px; }
 .contact-form h3 { font-family: var(--font-display); font-weight: 500; font-size: 22px; }
 
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }

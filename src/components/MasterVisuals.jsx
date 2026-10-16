@@ -14,15 +14,27 @@ import featuredVisual4 from "../assets/master-visuals/featured-4.jpg";
 import featuredVisual5 from "../assets/master-visuals/featured-5.jpg";
 
 // ============================================================
-// BOTTOM FEATURED WORK IMAGES
+// BOTTOM FEATURED WORK IMAGES (6 cards)
+// Loads every  work-*.jpg / png / webp  from src/assets/master-visuals/
+// in name order:  work-01, work-02 ... work-06
+// → just drop work-04.jpg, work-05.jpg, work-06.jpg in that folder.
+// Until all 6 exist, the cards reuse the existing images in a loop.
+// ============================================================
+
+// ============================================================
+// BOTTOM FEATURED WORK IMAGES (6 cards)
 // ============================================================
 
 import workVisual1 from "../assets/master-visuals/work-01.jpg";
 import workVisual2 from "../assets/master-visuals/work-02.jpg";
 import workVisual3 from "../assets/master-visuals/work-03.jpg";
+import workVisual4 from "../assets/master-visuals/work-04.jpg";
+import workVisual5 from "../assets/master-visuals/work-05.jpg";
+import workVisual6 from "../assets/master-visuals/work-06.jpg";
+
+const WORK_IMAGES = [workVisual1, workVisual2, workVisual3, workVisual4, workVisual5, workVisual6];
 
 const FEATURED_VISUALS = [featuredVisual1, featuredVisual2, featuredVisual3, featuredVisual4, featuredVisual5];
-const FEATURED_WORK = [workVisual1, workVisual2, workVisual3];
 
 // ============================================================
 // TWO MOVING ROWS
@@ -36,7 +48,15 @@ const ROW_TILES = [
   ["Orbit", "Frame", "Echo", "Halo", "Wren", "Sable"],
 ];
 
-const FEATURED = ["Campaign 01 — Nova", "Identity — Vessel", "Motion — Aurora"];
+// Card titles — edit freely (one per card, 6 cards).
+const FEATURED = [
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+];
 
 // ============================================================
 // Row 1 → moves right
@@ -285,7 +305,7 @@ export default function MasterVisuals() {
       <div className="wrap">
         <div className="mv-featured">
           {FEATURED.map((name, i) => (
-            <FeaturedCard key={name} name={name} image={FEATURED_WORK[i]} index={i} />
+            <FeaturedCard key={name} name={name} image={WORK_IMAGES[i % WORK_IMAGES.length]} index={i} />
           ))}
         </div>
       </div>
