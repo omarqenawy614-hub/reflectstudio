@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound";
 import Meteor from "./components/Meteor";
 import SoundToggle from "./components/SoundToggle";
 import WhatsAppFloat from "./components/WhatsAppFloat";
+import ComingSoon from "./pages/ComingSoon";
 
 // Scrolls to top on every route change, or to a section id when the
 // URL includes a #hash (e.g. navigating to /#contact from another page).
@@ -58,11 +59,40 @@ function useIsFinePointer() {
   return isFine;
 }
 
+// true on phones / small screens (900px wide or less).
+// To show "Coming Soon" on phones only, lower the number to 700.
+function useIsMobile(breakpoint = 900) {
+  const query = `(max-width: ${breakpoint}px)`;
+  const [isMobile, setIsMobile] = useState(
+    () => window.matchMedia(query).matches
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+
+    setIsMobile(mq.matches);
+
+    const onChange = (e) => setIsMobile(e.matches);
+
+    mq.addEventListener("change", onChange);
+
+    return () => mq.removeEventListener("change", onChange);
+  }, [query]);
+
+  return isMobile;
+}
+
 export default function App() {
   const isProjectDetail =
     useLocation().pathname.startsWith("/project/");
 
   const isFinePointer = useIsFinePointer();
+  const isMobile = useIsMobile();
+
+  // Mobile visitors see the "Coming Soon" page instead of the site.
+  // To bring the mobile version back, delete this one line.
+  // (It must stay AFTER all the hooks above.)
+  if (isMobile) return <ComingSoon />;
 
   return (
     <>
