@@ -1164,3 +1164,45 @@ nav.pills a, nav.pills button { font-size: clamp(10.5px, 0.84vw, 12.5px); paddin
 .vs-card-play { position: absolute; right: 10px; top: 10px; width: 26px; height: 26px; border-radius: 50%; background: rgba(10,4,16,.5); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; color: #fff; }
 .vs-card-play svg { width: 12px; height: 12px; translate: 1px 0; }
 .vs-card-title { position: absolute; left: 12px; bottom: 9px; font-family: var(--font-mono); font-size: 11px; color: #fff; }
+/* ============ HEADER — inset logo / button, centred links in a rounded shape ============ */
+
+/* equal, bigger space on both sides: the logo moves in from the left,
+   the button moves in from the right by the same amount */
+header.site-header { --hx: clamp(36px, 5.2vw, 100px); padding: 20px 0; }
+header.site-header .wrap { max-width: none; padding: 0 var(--hx); }
+
+/* 3 columns: logo | links (always in the exact middle) | button */
+header.site-header .nav-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  justify-content: initial;
+  gap: 16px;
+}
+header.site-header .logo { justify-self: start; }
+header.site-header .nav-cta { justify-self: end; margin-left: 0; white-space: nowrap; }
+
+/* the rounded highlight shape behind ALL the links */
+
+/* links: white text, no borders */
+nav.pills a,
+nav.pills button {
+  font-family: inherit;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  padding: 9px clamp(8px, 0.85vw, 16px);
+  border-radius: 100px;
+  transition: background 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* "Start a project" */
+.nav-cta {
+  background: var(--primary);
+  color: var(--ink);
+  border-color: var(--primary);
+  font-weight: 600;
+}
+.nav-cta:hover { background: #fff; border-color: #fff; color: var(--ink); }

@@ -1,7 +1,6 @@
 import Hero from "../components/Hero";
 import ServicesSection from "../components/ServicesSection";
 import MasterVisuals from "../components/MasterVisuals";
-import VideoShowcase from "../components/VideoShowcase";
 import Process from "../components/Process";
 import OurClients from "../components/OurClients";
 import Urgency from "../components/Urgency";
@@ -18,7 +17,6 @@ export default function Home() {
       <Hero />
       <ServicesSection />
       <MasterVisuals />
-      <VideoShowcase />
       <Process />
       <OurClients />
       <Urgency />

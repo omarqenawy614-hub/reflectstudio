@@ -25,7 +25,6 @@ export const siteConfig = {
     { label: "Home", to: "/#home" },
     { label: "Services", to: "/#services" },
     { label: "Visuals", to: "/#master-visuals" },
-    { label: "Videos", to: "/#videos" },
     { label: "What We Do", to: "/#what-we-do" },
     { label: "Clients", to: "/#our-clients" },
     { label: "Don't Wait", to: "/#why-us" }, // the countdown screen
@@ -39,7 +38,6 @@ export const siteConfig = {
     { label: "Home", to: "/#home" },
     { label: "Our Services", to: "/#services" },
     { label: "Visuals", to: "/#master-visuals" },
-    { label: "Videos", to: "/#videos" },
     { label: "What We Do", to: "/#what-we-do" },
     { label: "Our Clients", to: "/#our-clients" },
     { label: "Don't Wait", to: "/#why-us" },

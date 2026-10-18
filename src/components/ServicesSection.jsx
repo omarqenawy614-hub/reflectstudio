@@ -18,10 +18,10 @@ import { artStyle } from "../utils/placeholderArt";
 // Tune the feel with the numbers below.
 // ============================================================
 
-const AUTO_SPEED = 38;      // px per second of self-movement
+const AUTO_SPEED = 80;      // px per second of self-movement
 const HOVER_SLOWDOWN = 0.25; // speed while the mouse rests on the row (1 = no slowdown)
-const GAP = 22;             // space between cards (px)
-const MAX_GROW = 0.3;       // how much bigger the centre card gets (0.3 = +30 %)
+const GAP = 20;             // space between cards (px)
+const MAX_GROW = 0.0;       // how much bigger the centre card gets (0.3 = +30 %)
 
 function ServiceCard({ service, index, onOpen }) {
   const ref = useRef(null);
