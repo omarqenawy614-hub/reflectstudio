@@ -13,6 +13,8 @@ import Meteor from "./components/Meteor";
 import SoundToggle from "./components/SoundToggle";
 import WhatsAppFloat from "./components/WhatsAppFloat";
 import ComingSoon from "./pages/ComingSoon";
+import { ProjectModalProvider } from "./components/ProjectModal";
+import { scrollToPanel } from "./utils/scrollToPanel";
 
 // Scrolls to top on every route change, or to a section id when the
 // URL includes a #hash (e.g. navigating to /#contact from another page).
@@ -24,9 +26,7 @@ function ScrollManager() {
       const id = location.hash.replace("#", "");
 
       setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({
-          behavior: "smooth",
-        });
+        scrollToPanel(id);
       }, 60);
     } else {
       window.scrollTo({ top: 0 });
@@ -95,7 +95,7 @@ export default function App() {
   if (isMobile) return <ComingSoon />;
 
   return (
-    <>
+    <ProjectModalProvider>
       <div className="grain" />
 
       <SpaceField />
@@ -121,6 +121,6 @@ export default function App() {
       </Routes>
 
       <Footer />
-    </>
+    </ProjectModalProvider>
   );
 }

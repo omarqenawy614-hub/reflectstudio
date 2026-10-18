@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Section from "./Section";
+import SplitText from "./SplitText";
 import { stats } from "../data/clients";
 
 function StatCounter({ target, suffix, label }) {
@@ -42,16 +42,25 @@ function StatCounter({ target, suffix, label }) {
   );
 }
 
-export default function Stats() {
+// The "In Numbers" block. It lives INSIDE the Our Clients screen.
+export default function StatsBlock() {
   return (
-    <Section id="stats" className="quiet">
-      <div className="wrap">
-        <div className="stats-grid">
-          {stats.map((s) => (
-            <StatCounter key={s.label} target={s.num} suffix={s.suffix} label={s.label} />
-          ))}
+    <div className="numbers-row">
+      <div className="numbers-intro">
+        <div className="eyebrow rv" style={{ "--rd": "500ms" }}>
+          <span className="line" />
+          In Numbers
         </div>
+        <SplitText as="h2" className="section-title numbers-title" delay={600}>
+          Results that <span className="gradient-text">speak</span> for us.
+        </SplitText>
       </div>
-    </Section>
+
+      <div className="stats-grid rv" style={{ "--rd": "800ms" }}>
+        {stats.map((s) => (
+          <StatCounter key={s.label} target={s.num} suffix={s.suffix} label={s.label} />
+        ))}
+      </div>
+    </div>
   );
 }

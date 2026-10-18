@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
 
-// Ambient starfield behind the ENTIRE site (mounted once in App.jsx,
-// fixed to the viewport so it stays put while the page scrolls).
+// Ambient starfield (mounted once in App.jsx, fixed to the viewport).
+// It is only visible over the HERO: the canvas fades out as the hero
+// scrolls away, and is hidden on pages that have no hero.
 //
 // Deliberately does NOT light up individual stars near the cursor —
 // instead:
@@ -129,5 +130,38 @@ export default function SpaceField() {
     };
   }, []);
 
-  return <canvas className="space-field" ref={canvasRef} />;
+  // Stars are only for the hero: fade them out as the hero scrolls away.
+  useEffect(() => {
+    const canvas = canvasRef.current;
+
+    function onScroll() {
+      const hero = document.getElementById("home");
+
+      // pages without a hero (service pages, 404...) -> no stars at all
+      if (!hero) {
+        canvas.style.opacity = "0";
+        return;
+      }
+
+      // how much of the hero is still visible (1 = all, 0 = gone)
+      const visible = hero.getBoundingClientRect().bottom / window.innerHeight;
+      canvas.style.opacity = String(Math.max(0, Math.min(1, visible)));
+    }
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    // re-check when the route changes (the hero appears / disappears)
+    const observer = new MutationObserver(onScroll);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      observer.disconnect();
+    };
+  }, []);
+
+  return <canvas className="space-field" ref={canvasRef} style={{ transition: "opacity 0.2s linear" }} />;
 }

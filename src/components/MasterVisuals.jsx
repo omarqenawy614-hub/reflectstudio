@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Section from "./Section";
+import SplitText from "./SplitText";
 import { artStyle } from "../utils/placeholderArt";
 
 // ============================================================
@@ -114,7 +115,6 @@ function FeaturedCard({ name, image, index }) {
       ref={cardRef}
       className="mv-big"
       style={{ backgroundImage: `url(${image})`, rotateX, rotateY, transformPerspective: 900 }}
-      whileHover={{ scale: 1.035, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } }}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
     >
@@ -130,6 +130,7 @@ function FeaturedCard({ name, image, index }) {
 }
 
 export default function MasterVisuals() {
+
   // ==========================================================
   // MASTER VISUAL FADE
   // ==========================================================
@@ -237,75 +238,37 @@ export default function MasterVisuals() {
 
   return (
     <Section id="master-visuals">
-      <div className="wrap">
-        <div className="mv-top">
+      <div className="mv-stage">
+        {/* title row: title on the left, arrows that move the small cards on the right */}
+        <div className="mv-head">
           <div>
-            <div className="eyebrow"><span className="line" />Selected Work</div>
+            <div className="eyebrow rv"><span className="line" />Selected Work</div>
 
-            <h2 className="section-title">
-              Our Latest{" "}
-              <span style={{ background: "linear-gradient(100deg, var(--primary), var(--rose))", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-                Visuals
-              </span>
-            </h2>
-
-            <p className="section-sub">
-              A running archive of key frames, key art and world-building imagery produced across every Reflect Studio engagement — the visuals that end up defining a brand.
-            </p>
+            <SplitText as="h2" className="section-title" delay={120}>
+              Our Latest <span className="gradient-text">Visuals</span>
+            </SplitText>
           </div>
 
-          <div className="mv-frame-small" style={{ position: "relative", overflow: "hidden" }}>
-            {FEATURED_VISUALS.map((image, index) => (
-              <img
-                key={image}
-                src={image}
-                alt={`Featured visual ${index + 1}`}
-                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", opacity: activeVisual === index ? 1 : 0, transition: "opacity 1.5s ease-in-out", zIndex: activeVisual === index ? 2 : 1, pointerEvents: "none" }}
-              />
-            ))}
-
-            <span className="tag" style={{ zIndex: 5 }}>Master Visuals — 2026</span>
-          </div>
         </div>
-      </div>
 
-      {/* ======================================================
-          TWO INFINITE MOVING ROWS
-          
-          Disabled for now.
-          Change SHOW_MOVING_ROWS to true to restore them.
-          ====================================================== */}
+        {/* big rotating frame */}
+        <div className="mv-frame-small rv rv-fade" style={{ position: "relative", overflow: "hidden", "--rd": "300ms" }}>
+          {FEATURED_VISUALS.map((image, index) => (
+            <img
+              key={image}
+              src={image}
+              alt={`Featured visual ${index + 1}`}
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", opacity: activeVisual === index ? 1 : 0, transition: "opacity 1.5s ease-in-out", zIndex: activeVisual === index ? 2 : 1, pointerEvents: "none" }}
+            />
+          ))}
 
-      {SHOW_MOVING_ROWS && (
-        <div className="mv-rows-outer">
-          <div className="mv-rows">
-            {ROW_TILES.map((tiles, ri) => (
-              <div className="mv-row" ref={rowRefs[ri]} key={ri}>
-                {tiles.map((name, i) => (
-                  <div {...artStyle("mv-tile", null, ri + i)} key={`first-${name}-${i}`}>
-                    <span className="tag">{name}</span>
-                  </div>
-                ))}
-
-                {tiles.map((name, i) => (
-                  <div {...artStyle("mv-tile", null, ri + i)} key={`second-${name}-${i}`}>
-                    <span className="tag">{name}</span>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
+          <span className="tag" style={{ zIndex: 5 }}>Master Visuals — 2026</span>
         </div>
-      )}
 
-      {/* ======================================================
-          BOTTOM FEATURED CARDS
-          ====================================================== */}
-
-      <div className="wrap">
-        <div className="mv-featured">
+        {/* the 6 small cards: fixed in place. The one under the mouse grows, the others shrink. */}
+        <div className="mv-featured rv" style={{ "--rd": "550ms" }}>
           {FEATURED.map((name, i) => (
-            <FeaturedCard key={name} name={name} image={WORK_IMAGES[i % WORK_IMAGES.length]} index={i} />
+            <FeaturedCard key={i} name={name} image={WORK_IMAGES[i % WORK_IMAGES.length]} index={i} />
           ))}
         </div>
       </div>

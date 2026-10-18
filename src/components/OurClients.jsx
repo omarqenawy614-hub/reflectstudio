@@ -1,4 +1,6 @@
 import Section from "./Section";
+import SplitText from "./SplitText";
+import StatsBlock from "./Stats";
 import { clients } from "../data/clients";
 
 function ClientBadge({ client }) {
@@ -31,19 +33,19 @@ export default function OurClients() {
 
       <div className="wrap">
 
-        <div className="eyebrow">
+        <div className="eyebrow rv">
           <span className="line" />
           Trusted By
         </div>
 
-        <h2 className="section-title">
+        <SplitText as="h2" className="section-title" delay={120}>
           Our Clients
-        </h2>
+        </SplitText>
 
       </div>
 
 
-      <div className="clients-marquee">
+      <div className="clients-marquee rv" style={{ "--rd": "450ms" }}>
 
         {/* ROW 1 */}
 
@@ -84,6 +86,11 @@ export default function OurClients() {
 
         </div>
 
+      </div>
+
+      {/* In Numbers — part of this same screen */}
+      <div className="wrap">
+        <StatsBlock />
       </div>
 
     </Section>

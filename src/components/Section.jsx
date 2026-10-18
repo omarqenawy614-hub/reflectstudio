@@ -1,19 +1,16 @@
-import { motion } from "framer-motion";
-
-// Wrap any homepage section in this to get the "next section enters
-// the scene" cinematic reveal as the user scrolls to it. Used for
-// every section except the Hero (which is always visible on load).
+// ============================================================
+// SECTION = one full-screen "panel".
+//
+// Every homepage section is exactly one screen tall. Panels are
+// stacked (position: sticky) so the NEXT section rises up over the
+// current one — it feels like the page is moving, not like you are
+// scrolling down a long document. The scroll engine that animates
+// them lives in src/utils/usePanels.js (called once from Home.jsx).
+// ============================================================
 export default function Section({ id, className = "", children }) {
   return (
-    <motion.section
-      id={id}
-      className={`section ${className}`}
-      initial={{ opacity: 0, y: 46 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {children}
-    </motion.section>
+    <section id={id} className={`panel ${className}`} data-panel>
+      <div className="panel-inner">{children}</div>
+    </section>
   );
 }

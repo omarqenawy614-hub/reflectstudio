@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { siteConfig } from "../data/siteConfig";
 import logoImage from "../assets/logo.png";
+import { scrollToPanel } from "../utils/scrollToPanel";
+import { useProjectModal } from "./ProjectModal";
 
 export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const isHome = location.pathname === "/";
+  const { openProject } = useProjectModal();
   const [active, setActive] = useState("home");
 
   // ============================================================
@@ -15,59 +18,20 @@ export default function Header() {
   // ============================================================
   const LOGO_WIDTH = 200;
 
-  // Track which homepage section is in view so its nav pill fills in.
+  // The panel engine (usePanels.js) tells us which screen is showing,
+  // so the matching pill is filled in.
   useEffect(() => {
     if (!isHome) return;
-
-    const ids = siteConfig.nav.map((n) =>
-      n.to.replace("/#", "")
-    );
-
-    const sections = ids
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
-
-    function onScroll() {
-      let current = sections[0];
-
-      sections.forEach((sec) => {
-        if (
-          sec.getBoundingClientRect().top <=
-          window.innerHeight * 0.4
-        ) {
-          current = sec;
-        }
-      });
-
-      if (current) {
-        setActive(current.id);
-      }
-    }
-
-    window.addEventListener(
-      "scroll",
-      onScroll,
-      { passive: true }
-    );
-
-    onScroll();
-
-    return () =>
-      window.removeEventListener(
-        "scroll",
-        onScroll
-      );
+    const onChange = (e) => setActive(e.detail);
+    window.addEventListener("panelchange", onChange);
+    return () => window.removeEventListener("panelchange", onChange);
   }, [isHome]);
 
   function goTo(to) {
     const sectionId = to.replace("/#", "");
 
     if (isHome) {
-      document
-        .getElementById(sectionId)
-        ?.scrollIntoView({
-          behavior: "smooth",
-        });
+      scrollToPanel(sectionId);
     } else {
       navigate(to);
     }
@@ -150,11 +114,11 @@ export default function Header() {
             ================================================== */}
 
         <a
-          href="/#contact"
+          href="#start-project"
           className="nav-cta"
           onClick={(e) => {
             e.preventDefault();
-            goTo("/#contact");
+            openProject();
           }}
         >
           Start a project

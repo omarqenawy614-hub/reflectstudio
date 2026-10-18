@@ -109,3 +109,24 @@ Routing is handled by `react-router-dom` in `src/App.jsx`:
 - Colors are drawn from the studio's brand identity reference: a deep
   near-black violet base, a bright lavender signature accent, and a
   dusty rose secondary accent.
+
+---
+
+## Full-screen panels (v2 motion update)
+
+* Every homepage section is one screen tall and stacked: the next section rises over the current one. One wheel / key / swipe = one screen. Engine: `src/utils/usePanels.js`; panel wrapper: `src/components/Section.jsx`; section order: `src/pages/Home.jsx`.
+* Title motion: `SplitText` (words rise out of a mask). Block motion: add class `rv` (+ `style={{"--rd":"300ms"}}` for delay) to any element.
+* Block under "Our Clients" (headline, MM:SS countdown, "Why choose us" cards + sparkles): `src/components/Urgency.jsx`. All its wording and the countdown length (`minutes`) are in `src/data/urgency.js`.
+* "In Numbers" is part of the Our Clients screen (`src/components/Stats.jsx`).
+* The Contact section is gone: every "Start a project" button opens the form window (`src/components/ProjectModal.jsx`). Footer shortcuts are listed in `siteConfig.footerNav`.
+* Our Visuals small cards: a looping carousel with arrows (`WorkCarousel` in `MasterVisuals.jsx`); add more images to `WORK_IMAGES`.
+* Footer is the last screen on the homepage (`src/components/Footer.jsx`), a normal footer on inner pages.
+* Keep each section inside one screen height when you edit it; sizes already use `vh`, so it fits from 1280x650 up.
+
+## Round 3 notes
+
+* **Services** (`ServicesSection.jsx`): self-moving row; drag with the mouse to stop on a service; click still opens the page. Speed / grow amount are the constants at the top of the file.
+* **Our Visuals**: static cards, the hovered one grows and the others shrink (CSS in `global.css`, "OUR VISUALS").
+* **Videos section** (`VideoShowcase.jsx`): big player with its own control bar + cards on the floor. Add your videos in `src/data/videos.js` (instructions at the top of that file).
+* **Header**: logo far left, section pills beside it, "Start a project" far right. The pill list is `siteConfig.nav`; the footer list is `siteConfig.footerNav`.
+* **Sparkles** component: `src/components/Sparks.jsx` (used in What We Do and Why Choose Us).

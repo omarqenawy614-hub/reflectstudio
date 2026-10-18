@@ -1,10 +1,15 @@
 import { siteConfig } from "../data/siteConfig";
 import { stats } from "../data/clients";
 import astronaut from "../assets/astronaut.webp";
+import Section from "./Section";
+import { scrollToPanel } from "../utils/scrollToPanel";
+import { useProjectModal } from "./ProjectModal";
+import SplitText from "./SplitText";
 
 export default function Hero() {
+  const { openProject } = useProjectModal();
   return (
-    <section id="home" className="hero">
+    <Section id="home" className="hero">
       <div className="hero-bg" />
 
       {/* ==================================================
@@ -13,32 +18,33 @@ export default function Hero() {
       <div className="wrap hero-grid">
         <div className="hero-copy">
           {/* السطر التعريفي */}
-          <div className="hero-eyebrow">
+          <div className="hero-eyebrow rv" style={{ "--rd": "0ms" }}>
             <span className="line" />
             Marketing Agency — {siteConfig.location}
           </div>
 
           {/* العنوان الرئيسي */}
-          <h1>
-            We build the {""}
-            <em className="">Reflection</em>
-            <span className="hero-title-small">your brand hasn't seen yet.</span>
-          </h1>
+          <SplitText as="h1" delay={250}>
+            We build the <span className="hero-em">Reflection</span>
+          </SplitText>
+          <SplitText as="p" className="hero-title-small" delay={650}>
+            your brand hasn't seen yet.
+          </SplitText>
 
           {/* النص الصغير أسفل العنوان */}
-          <p className="hero-sub">
+          <p className="hero-sub rv" style={{ "--rd": "900ms" }}>
             Everything your business needs to stand out — visual identity and advertising campaigns to
             websites and digital marketing.
           </p>
 
           {/* HERO ACTIONS */}
-          <div className="hero-actions">
+          <div className="hero-actions rv" style={{ "--rd": "1050ms" }}>
             <a
               href="#contact"
               className="btn-primary"
               onClick={(e) => {
                 e.preventDefault();
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                openProject();
               }}
             >
               Start a project →
@@ -49,7 +55,7 @@ export default function Hero() {
               className="btn-ghost"
               onClick={(e) => {
                 e.preventDefault();
-                document.getElementById("master-visuals")?.scrollIntoView({ behavior: "smooth" });
+                scrollToPanel("master-visuals");
               }}
             >
               View the work
@@ -57,7 +63,7 @@ export default function Hero() {
           </div>
 
           {/* الأرقام (من src/data/clients.js → stats) */}
-          <ul className="hero-proof">
+          <ul className="hero-proof rv" style={{ "--rd": "1200ms" }}>
             {stats.slice(0, 3).map((s) => (
               <li key={s.label}>
                 <strong>
@@ -71,17 +77,17 @@ export default function Hero() {
         </div>
 
         {/* صورة الرائد */}
-        <div className="hero-visual" aria-hidden="true">
+        <div className="hero-visual rv rv-fade" style={{ "--rd": "500ms" }} aria-hidden="true">
           <div className="hero-orb" />
           <img src={astronaut} alt="" className="hero-astronaut" draggable="false" fetchpriority="high" />
         </div>
       </div>
 
       {/* SCROLL HINT */}
-      <div className="scroll-hint">
+      <div className="scroll-hint rv" style={{ "--rd": "1500ms" }}>
         <span>Scroll</span>
         <span className="stick" />
       </div>
-    </section>
+    </Section>
   );
 }

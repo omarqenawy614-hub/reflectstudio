@@ -23,11 +23,27 @@ export const siteConfig = {
   // on the homepage (scrolled to) or a route path (navigated to).
   nav: [
     { label: "Home", to: "/#home" },
+    { label: "Services", to: "/#services" },
+    { label: "Visuals", to: "/#master-visuals" },
+    { label: "Videos", to: "/#videos" },
+    { label: "What We Do", to: "/#what-we-do" },
+    { label: "Clients", to: "/#our-clients" },
+    { label: "Don't Wait", to: "/#why-us" }, // the countdown screen
+    { label: "Why Us", to: "/#why-cards" }, // the 4 cards screen
+    { label: "Contact", to: "/#footer" },
+  ],
+
+  // Shortcuts listed in the footer — the same screens as the header,
+  // without "Contact" (you are already there).
+  footerNav: [
+    { label: "Home", to: "/#home" },
     { label: "Our Services", to: "/#services" },
     { label: "Visuals", to: "/#master-visuals" },
+    { label: "Videos", to: "/#videos" },
     { label: "What We Do", to: "/#what-we-do" },
     { label: "Our Clients", to: "/#our-clients" },
-    { label: "Contact", to: "/#contact" },
+    { label: "Don't Wait", to: "/#why-us" },
+    { label: "Why Choose Us", to: "/#why-cards" },
   ],
 
   // Social links — swap the `href` values for your real profiles.
